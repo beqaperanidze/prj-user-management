@@ -1,7 +1,5 @@
 package ge.halykbank.pum.entity;
 
-import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.jackson.Jacksonized;
 
 

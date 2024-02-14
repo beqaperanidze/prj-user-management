@@ -1,8 +1,5 @@
 package ge.halykbank.pum.entity.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class LoginRequest {
 
 

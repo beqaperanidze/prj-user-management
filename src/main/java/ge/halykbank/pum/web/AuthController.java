@@ -1,6 +1,5 @@
 package ge.halykbank.pum.web;
 
-import ge.halykbank.pum.entity.Role;
 import ge.halykbank.pum.entity.User;
 import ge.halykbank.pum.entity.dto.LoginRequest;
 import ge.halykbank.pum.entity.service.AuthService;
