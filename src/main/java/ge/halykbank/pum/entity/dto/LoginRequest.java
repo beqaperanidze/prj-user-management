@@ -1,8 +1,6 @@
 package ge.halykbank.pum.entity.dto;
 
 public class LoginRequest {
-
-
     private String username;
     private String password;
 

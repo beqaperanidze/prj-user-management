@@ -1,19 +1,28 @@
 package ge.halykbank.pum.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.jackson.Jacksonized;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Objects;
+
+@Getter
+@Setter
 
 @Entity
 @Table(name = "users")
-@Jacksonized
-public class User {
+public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(unique = true, nullable = false)
@@ -28,37 +37,42 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Role role = Role.USER;
+    private Boolean locked = false;
+    private Boolean enabled = false;
 
-    public Integer getId() {
-        return id;
+    public User() {
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public User(String username, String password, Role role){
+        this.username=username;
+        this.password=password;
+        this.role=role;
     }
 
-    public String getUsername() {
-        return username;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    @Override
+    public boolean isAccountNonLocked() {
+        return !locked;
     }
 
-    public String getPassword() {
-        return password;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.name());
+        return Collections.singletonList(authority);
     }
 
     @Override
@@ -66,8 +80,7 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(username, user.username)
-                && Objects.equals(password, user.password) && role == user.role;
+        return Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && role == user.role;
     }
 
     @Override
@@ -77,11 +90,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", role=" + role +
-                '}';
+        return "User{" + "id=" + id + ", username='" + username + '\'' + ", role=" + role + '}';
     }
-
 }

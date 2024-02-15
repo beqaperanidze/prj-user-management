@@ -18,14 +18,12 @@ import java.util.stream.Collectors;
 public class UserController {
     public static final String WEB_CONTEXT = "/users";
 
-    private final UserRepository repository;
+    public static UserRepository repository;
 
 
     public UserController(UserRepository repository) {
-        this.repository = repository;
+        UserController.repository = repository;
     }
-
-    User test = new User();
 
     @GetMapping("/me")
     public UserDTO me() {
