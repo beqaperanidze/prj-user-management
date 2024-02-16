@@ -18,11 +18,11 @@ import java.util.stream.Collectors;
 public class UserController {
     public static final String WEB_CONTEXT = "/users";
 
-    public static UserRepository repository;
+    private final UserRepository repository;
 
 
     public UserController(UserRepository repository) {
-        UserController.repository = repository;
+        this.repository = repository;
     }
 
     @GetMapping("/me")
