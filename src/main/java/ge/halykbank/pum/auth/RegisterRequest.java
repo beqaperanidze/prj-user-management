@@ -5,11 +5,15 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+/**
+ * This class represents DTO for registration request.
+ *
+ * @author Beqa Peranidze
+ */
 @Getter
 @AllArgsConstructor
-@EqualsAndHashCode
 @ToString
-public class AuthRequest {
+public class RegisterRequest {
     private final String username;
     private final String password;
 }

@@ -1,10 +1,13 @@
 package ge.halykbank.pum.entity;
 
-import org.springframework.security.core.GrantedAuthority;
-
-import java.util.Collection;
-
-public enum Role{
+/**
+ * This enum defines User's role.
+ * <p>
+ * {@link #USER}
+ * {@link #ADMIN}
+ */
+public enum Role {
     ADMIN,
     USER
 }
+

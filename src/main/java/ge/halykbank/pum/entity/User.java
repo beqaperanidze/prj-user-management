@@ -1,8 +1,9 @@
 package ge.halykbank.pum.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.jackson.Jacksonized;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,14 +16,20 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
 
+/**
+ * User entity class used for persistence.
+ *
+ * @author Beqa Peranidze
+ */
 @Getter
 @Setter
-
 @Entity
+@AllArgsConstructor
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Integer id;
 
     @Column(unique = true, nullable = false)
@@ -37,44 +44,48 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role = Role.USER;
-    private Boolean locked = false;
-    private Boolean enabled = false;
 
     public User() {
     }
 
-    public User(String username, String password, Role role){
-        this.username=username;
-        this.password=password;
-        this.role=role;
+    public User(String username, String password, Role role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
-        return !locked;
+        return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return true;
     }
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.name());
         return Collections.singletonList(authority);
     }
 
+    @JsonIgnore
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -83,11 +94,13 @@ public class User implements UserDetails {
         return Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && role == user.role;
     }
 
+    @JsonIgnore
     @Override
     public int hashCode() {
         return Objects.hash(id, username, password, role);
     }
 
+    @JsonIgnore
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", username='" + username + '\'' + ", role=" + role + '}';
