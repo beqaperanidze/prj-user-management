@@ -10,3 +10,4 @@
 2. From `prj-user-management` directory run the following: `docker build -t user-management:latest .`
 3. Run the following: `docker run -p 8080:8080 user-management`
 4. Go to `http://localhost:8080/swagger-ui/index.html#/` and navigate through swagger search bar to `/api`.
+
