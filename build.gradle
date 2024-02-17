@@ -43,13 +43,12 @@ dependencies {
 jar {
     archiveBaseName = 'prj-user-management'
     archiveVersion = '0.1.0'
-}
 
-manifest {
-    attributes(
-            'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-            'Main-Class': 'ge.halykbank.pum.PrjUserManagementApplicationTests'
-    )
+    manifest {
+        attributes(
+                'Main-Class': 'ge.halykbank.pum.PrjUserManagementApplication'
+        )
+    }
 }
 
 tasks.named('test') {
