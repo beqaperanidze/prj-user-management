@@ -61,27 +61,27 @@ public abstract class AbstractSpringMvcTestConfiguration {
         mockMvc.perform(getPUTMockMvcBuilder(object, url)).andExpect(MockMvcResultMatchers.status().isOk());
     }
 
-
-    protected <T> MockHttpServletRequestBuilder getPOSTMockMvcBuilder(T object, String url) throws Exception {
+    private <T> MockHttpServletRequestBuilder getPOSTMockMvcBuilder(T object, String url) throws Exception {
         return MockMvcRequestBuilders.post(url)
                 .with(httpBasic(username, password))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(MAPPER.writeValueAsString(object));
     }
 
-    protected MockHttpServletRequestBuilder getGETMockMvcBuilder(String url) throws Exception {
+    private MockHttpServletRequestBuilder getGETMockMvcBuilder(String url) throws Exception {
         return MockMvcRequestBuilders.get(url)
                 .with(httpBasic(username, password))
                 .contentType(MediaType.APPLICATION_JSON);
     }
 
-    protected <T> MockHttpServletRequestBuilder getPUTMockMvcBuilder(T object, String url) throws Exception {
+    private <T> MockHttpServletRequestBuilder getPUTMockMvcBuilder(T object, String url) throws Exception {
         return MockMvcRequestBuilders.put(url)
                 .with(httpBasic(username, password))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(MAPPER.writeValueAsString(object));
     }
-    protected MockHttpServletRequestBuilder getDELETEMockMvcBuilder(String url) throws Exception {
+
+    private MockHttpServletRequestBuilder getDELETEMockMvcBuilder(String url) throws Exception {
         return MockMvcRequestBuilders.delete(url)
                 .with(httpBasic(username, password))
                 .contentType(MediaType.APPLICATION_JSON);
