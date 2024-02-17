@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 class RegistrationServiceImpl implements RegistrationService {
     private final UserRepository repository;
-    private final PasswordEncoder bCryptPasswordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public boolean register(RegisterRequest request) {
@@ -21,7 +21,7 @@ class RegistrationServiceImpl implements RegistrationService {
         if (userExists) {
             return false;
         }
-        String encoded = bCryptPasswordEncoder.encode(request.getPassword());
+        String encoded = passwordEncoder.encode(request.getPassword());
         var user = new User();
         user.setUsername(request.getUsername());
         user.setPassword(encoded);
