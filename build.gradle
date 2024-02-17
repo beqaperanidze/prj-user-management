@@ -40,6 +40,11 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:2.1.0'
 }
 
+jar {
+    archiveBaseName = 'prj-user-management'
+    archiveVersion = '0.1.0'
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }
