@@ -36,6 +36,7 @@ The API documentation is described with Swagger.
 * Spring Security
 * Spring Data JPA
 * Swagger
+* JUnit 5
 * H2
 * Docker
 <hr>

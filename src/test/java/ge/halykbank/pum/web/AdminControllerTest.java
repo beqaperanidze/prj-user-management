@@ -20,7 +20,7 @@ public class AdminControllerTest extends AbstractSpringMvcTestConfiguration {
     @Test
     void test_saveSingleUser() throws Exception {
         User user = new User("nikushakajaia", "sorokravaxar", Role.ADMIN);
-        performPOSTAndExpectStatusOk(user, "/admin/users/save");
+        performPOSTAndExpectStatusCreated(user, "/admin/users/save");
     }
 
     @Test
@@ -32,7 +32,7 @@ public class AdminControllerTest extends AbstractSpringMvcTestConfiguration {
     @Test
     void test_saveAllUsers() throws Exception {
         List<User> users = List.of(new User("testtest", "testtest123", Role.USER));
-        performPOSTAndExpectStatusOkAndExpect(users, users, "/admin/users/save/all");
+        performPOSTAndExpectStatusCreatedAndExpect(users, users, "/admin/users/save/all");
     }
 
     @Test

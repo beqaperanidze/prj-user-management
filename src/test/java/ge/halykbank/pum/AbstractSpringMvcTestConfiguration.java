@@ -31,12 +31,19 @@ public abstract class AbstractSpringMvcTestConfiguration {
         return mockMvc.perform(getPOSTMockMvcBuilder(object, url)).andExpect(MockMvcResultMatchers.status().isOk());
     }
 
+    protected ResultActions performPOSTAndExpectStatusCreated(Object object, String url) throws Exception {
+        return mockMvc.perform(getPOSTMockMvcBuilder(object, url)).andExpect(MockMvcResultMatchers.status().isCreated());
+    }
+
     protected ResultActions performPOSTAndExpectStatusBadRequest(Object object, String url) throws Exception {
         return mockMvc.perform(getPOSTMockMvcBuilder(object, url)).andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
     protected void performPOSTAndExpectStatusOkAndExpect(Object object, Object expected, String url) throws Exception {
         performPOSTAndExpectStatusOk(object, url).andExpect(MockMvcResultMatchers.content().json(MAPPER.writeValueAsString(expected)));
+    }
+    protected void performPOSTAndExpectStatusCreatedAndExpect(Object object, Object expected, String url) throws Exception {
+        performPOSTAndExpectStatusCreated(object, url).andExpect(MockMvcResultMatchers.content().json(MAPPER.writeValueAsString(expected)));
     }
 
     protected void performGETAndExpectStatusIsNotFound(String url) throws Exception {
