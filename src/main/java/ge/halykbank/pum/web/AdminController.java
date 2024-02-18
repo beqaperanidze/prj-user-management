@@ -59,8 +59,6 @@ public class AdminController {
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = User.class))}),
             @ApiResponse(responseCode = "400", description = "Bad request",
-                    content = @Content),
-            @ApiResponse(responseCode = "500", description = "Invalid body",
                     content = @Content)
     })
     @PostMapping("/users/save")
