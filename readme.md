@@ -42,7 +42,6 @@ The API documentation is described with Swagger.
 
 ## Additional Notes:
 
-* Swagger authentication button could not be configured correctly due to basic authentication,
-  for actual authentication please apply credentials in the dialog box offered by browser. <br>
+* **Initial** authentication on Swagger could not be configured correctly due to basic authentication,
+for **initial** authentication please apply credentials in following dialog box offered by browser, then you can play with Swagger auth, may lead to auth inconsistencies. <br> ![img.png](img.png)
 * For better api usage `Postman` is preferred.
-
