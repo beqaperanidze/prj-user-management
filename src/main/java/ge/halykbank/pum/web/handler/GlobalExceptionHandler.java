@@ -1,6 +1,7 @@
 package ge.halykbank.pum.web.handler;
 
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -46,6 +47,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException ex){
         return new ResponseEntity<>("Constraint violation error occurred: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    public ResponseEntity<String> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex){
+        return new ResponseEntity<>("Constraint violation error occurred: " + ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<String> handleOtherExceptions(RuntimeException ex) {
