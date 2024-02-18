@@ -45,7 +45,7 @@ public class AdminController {
 
     @PostMapping("/users/save")
     public ResponseEntity<User> save(final @RequestBody @Valid User user) {
-        log.debug("Received request to save user: {}", user.getUsername());
+        log.debug("Received request to save user: {}", user);
         return ResponseEntity.of(Optional.of(repository.save(user)));
     }
 
