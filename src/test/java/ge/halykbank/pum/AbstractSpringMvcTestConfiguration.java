@@ -60,8 +60,8 @@ public abstract class AbstractSpringMvcTestConfiguration {
                 .andExpect(MockMvcResultMatchers.content().string(expected));
     }
 
-    protected void performDELETEAndExpect5xx(String url) throws Exception {
-        mockMvc.perform(getDELETEMockMvcBuilder(url)).andExpect(MockMvcResultMatchers.status().isInternalServerError());
+    protected void performDELETEAndExpect4xx(String url) throws Exception {
+        mockMvc.perform(getDELETEMockMvcBuilder(url)).andExpect(MockMvcResultMatchers.status().is4xxClientError());
     }
 
     protected void performUpdateAndExpectStatusOk(Object object, String url) throws Exception {

@@ -71,7 +71,7 @@ public class AdminControllerTest extends AbstractSpringMvcTestConfiguration {
 
     @Test
     void test_emptyDeleteById() throws Exception {
-        performDELETEAndExpect5xx("/admin/users/delete/9999");
+        performDELETEAndExpect4xx("/admin/users/delete/9999");
     }
 
     @Test
